@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotes
+  labels:
+    name: quotes
+    app: quotes
+spec:
+  template:
+    metadata:
+      name: quotes
+      labels:
+        name: quotes
+        app: quotes
+    spec:
+      containers:
+        - name: quotes
+          image: msalmansaeedch786/quotes
+          ports:
+            - containerPort: 8080
+  replicas: 1
+  selector:
+    matchLabels:
+        name: quotes
+        app: quotes

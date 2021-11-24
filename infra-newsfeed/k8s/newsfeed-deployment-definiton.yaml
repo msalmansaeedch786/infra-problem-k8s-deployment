@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newsfeed
+  labels:
+    name: newsfeed
+    app: newsfeed
+spec:
+  template:
+    metadata:
+      name: newsfeed
+      labels:
+        name: newsfeed
+        app: newsfeed
+    spec:
+      containers:
+        - name: newsfeed
+          image: msalmansaeedch786/newsfeed
+          ports:
+            - containerPort: 8080
+  replicas: 1
+  selector:
+    matchLabels:
+        name: newsfeed
+        app: newsfeed

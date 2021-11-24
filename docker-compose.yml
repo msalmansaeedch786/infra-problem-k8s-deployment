@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  quotes:
+    build: ./infra-quotes
+    ports:
+      - "3000:8080"
+    networks:
+      the_net:
+        aliases:
+          - quotes
+    
+  newsfeed:
+    build: ./infra-newsfeed
+    ports:
+      - "4000:8080"
+    networks:
+      the_net:
+        aliases:
+          - newsfeed
+
+  frontend:
+    build: ./infra-frontend
+    ports:
+      - "8080:8080"
+    networks:
+      the_net:
+        aliases:
+          - frontend
+    depends_on:
+      - newsfeed
+      - quotes
+    environment:
+      STATIC_URL: http://frontend:8000
+      QUOTE_SERVICE_URL: http://quotes:8080
+      NEWSFEED_SERVICE_URL: http://newsfeed:8080
+      NEWSFEED_SERVICE_TOKEN: T1&eWbYXNWG1w1^YGKDPxAWJ@^et^&kX
+
+networks:
+  the_net:

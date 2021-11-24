@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    name: frontend
+    app: frontend
+spec:
+  template:
+    metadata:
+      name: frontend
+      labels:
+        name: frontend
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: msalmansaeedch786/frontend
+          ports:
+            - containerPort: 8080
+          env:
+          - name: STATIC_URL
+            value: http://frontend:8000
+          - name: QUOTE_SERVICE_URL 
+            value: http://quotes:8080
+          - name: NEWSFEED_SERVICE_URL 
+            value: http://newsfeed:8080
+          - name: NEWSFEED_SERVICE_TOKEN
+            value: T1&eWbYXNWG1w1^YGKDPxAWJ@^et^&kX
+  replicas: 1
+  selector:
+    matchLabels:
+        name: frontend
+        app: frontend

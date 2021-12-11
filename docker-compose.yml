@@ -32,7 +32,7 @@ services:
       - newsfeed
       - quotes
     environment:
-      STATIC_URL: http://frontend:8000
+      STATIC_URL: http://localhost:8000
       QUOTE_SERVICE_URL: http://quotes:8080
       NEWSFEED_SERVICE_URL: http://newsfeed:8080
       NEWSFEED_SERVICE_TOKEN: T1&eWbYXNWG1w1^YGKDPxAWJ@^et^&kX
